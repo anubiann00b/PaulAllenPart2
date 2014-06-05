@@ -99,7 +99,7 @@ public class Exporter {
             total += split[i];
         }
 
-        return split;
+        return set;
     }
 
     public static Packet[] exportToPackets(Data[] data) {
@@ -117,9 +117,9 @@ public class Exporter {
         for(Data[] set : data) {
             int i = 0;
             jsonString += "\'Series\', [";
-            while(i < data.length) {
-                jsonString += data[i].locationCoords.latitude + ", ";
-                jsonString += data[i].locationCoords.longitude + ", ";
+            while(i < set.length) {
+                jsonString += set[i].locationCoords.latitude + ", ";
+                jsonString += set[i].locationCoords.longitude + ", ";
                 jsonString += 10;
                 if((i+1) < data.length)
                     jsonString += ", ";
