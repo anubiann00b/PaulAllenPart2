@@ -1,52 +1,58 @@
 <!DOCTYPE HTML>
 <html lang="en">
   <head>
-    <title>Phailin Tweets</title>
-    <meta charset="utf-8">
-    <style type="text/css" src="style.css"/>
+    <title>Nor'easter Tweets</title>
+
+    <meta charset="utf-8"/>
+
+    <link rel="stylesheet" href="style.css"/>
+    <link rel="stylesheet" href="jquery.css"/>
+    <link href='https://fonts.googleapis.com/css?family=Varela+Round' rel='stylesheet'>
+
+    <script src="js/jquery.min.js"></script>
+    <script src="js/jquery-ui.custom.min.js"></script>
+
+    <script>
+        $(function() {
+            $( "#slider" ).slider();
+        });
+    </script>
   </head>
   <body>
-
-  <div id="container"></div>
-
-  <div id="currentInfo">
-    <span id="data" class="globe"></span>
-  </div>
 
   <span id="link">
     Made using
       <a href="http://www.chromeexperiments.com/globe">
         WebGL
       </a>
+      and
+      <a href="http://www.jquery.com">
+          JQuery
+      </a>
   </span>
 
-  <div id="title">Cyclone Phailin Tweets</div>
-  <div id="subtitle">
-    Each bar represents a single tweet with geolocation
-    data for the sample of tweets during cyclone Phailin.
-  </div>
+  <div id="title">Nor'easter Tweets</div>
 
-  <span id="ce" class="center">
-    Click and drag to rotate globe.
-    Scroll to zoom in and out.
-  </span>
+  <div id="slider" style="top:85%; width:45%; margin-left:auto; margin-right:auto;"></div>
 
   <span id="create">
     <p>
-        <a href="https://github.com/QuantumPhi">
-            <b>
-                &lt&gt with
-                <img src="resources/GITHUB_HEART.png" style="zoom:45%"/>
-                by Tarik Onalan
-            </b>
+        <a href="https://github.com/QuantumPhi" style="text-decoration:none">
+            <font color="#ffffff">
+                <b>
+                    &lt&gt with
+                    <img src="resources/GITHUB_HEART.png" style="zoom:45%"/>
+                    by Tarik Onalan
+                </b>
+            </font>
         </a>
     </p>
   </span>
 
-  <script type="text/javascript" src="/PaulAllenPart2/third-party/Detector.js"/>
-  <script type="text/javascript" src="/PaulAllenPart2/third-party/three.min.js"/>
-  <script type="text/javascript" src="/PaulAllenPart2/third-party/Tween.js"/>
-  <script type="text/javascript" src="/PaulAllenPart2/globe.js"/>
+  <script type="text/javascript" src="third-party/Detector.js"/>
+  <script type="text/javascript" src="third-party/three.min.js"/>
+  <script type="text/javascript" src="third-party/Tween.js"/>
+  <script type="text/javascript" src="globe.js"/>
   <script type="text/javascript">
 
     if(!Detector.webgl){
@@ -72,7 +78,7 @@
 
 
       xhr = new XMLHttpRequest();
-      xhr.open('GET', '/PaulAllenComputingChallenge/data.json', true);
+      xhr.open('GET', 'data.json', true);
       xhr.onreadystatechange = function(e) {
         if (xhr.readyState === 4) {
           if (xhr.status === 200) {
