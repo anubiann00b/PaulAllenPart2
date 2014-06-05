@@ -1,0 +1,98 @@
+<!DOCTYPE HTML>
+<html lang="en">
+  <head>
+    <title>Phailin Tweets</title>
+    <meta charset="utf-8">
+    <style type="text/css" src="style.css"/>
+  </head>
+  <body>
+
+  <div id="container"></div>
+
+  <div id="currentInfo">
+    <span id="data" class="globe"></span>
+  </div>
+
+  <span id="link">
+    Made using
+      <a href="http://www.chromeexperiments.com/globe">
+        WebGL
+      </a>
+  </span>
+
+  <div id="title">Cyclone Phailin Tweets</div>
+  <div id="subtitle">
+    Each bar represents a single tweet with geolocation
+    data for the sample of tweets during cyclone Phailin.
+  </div>
+
+  <span id="ce" class="center">
+    Click and drag to rotate globe.
+    Scroll to zoom in and out.
+  </span>
+
+  <span id="create">
+    <p>
+        <a href="https://github.com/QuantumPhi">
+            <b>
+                &lt&gt with
+                <img src="resources/GITHUB_HEART.png" style="zoom:45%"/>
+                by Tarik Onalan
+            </b>
+        </a>
+    </p>
+  </span>
+
+  <script type="text/javascript" src="/PaulAllenPart2/third-party/Detector.js"/>
+  <script type="text/javascript" src="/PaulAllenPart2/third-party/three.min.js"/>
+  <script type="text/javascript" src="/PaulAllenPart2/third-party/Tween.js"/>
+  <script type="text/javascript" src="/PaulAllenPart2/globe.js"/>
+  <script type="text/javascript">
+
+    if(!Detector.webgl){
+      Detector.addGetWebGLMessage();
+    } else {
+
+      var container = document.getElementById('container');
+      var globe = new DAT.Globe(container);
+
+      console.log(globe);
+      var i, tweens = [];
+
+      var settime = function(globe, t) {
+        return function() {
+          new TWEEN.Tween(globe).to({time: t},500).easing(TWEEN.Easing.Cubic.EaseOut).start();
+        };
+      };
+
+      var y = document.getElementById('data');
+      y.addEventListener('mouseover', settime(globe,i), false);
+      var xhr;
+      TWEEN.start();
+
+
+      xhr = new XMLHttpRequest();
+      xhr.open('GET', '/PaulAllenComputingChallenge/data.json', true);
+      xhr.onreadystatechange = function(e) {
+        if (xhr.readyState === 4) {
+          if (xhr.status === 200) {
+            var data = JSON.parse(xhr.responseText);
+            window.data = data;
+            for (i=0;i<data.length;i++) {
+              globe.addData(data[i][1], {format: 'magnitude', name: data[i][0], animated: true});
+            }
+            globe.createPoints();
+            settime(globe,0)();
+            globe.animate();
+            document.body.style.backgroundImage = 'none'; // remove loading
+          }
+        }
+      };
+      xhr.send(null);
+    }
+
+  </script>
+
+  </body>
+
+</html>
