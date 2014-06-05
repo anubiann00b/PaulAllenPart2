@@ -14,8 +14,17 @@
 
     <script>
         $(function() {
-            $( "#slider" ).slider();
-        });
+            $( "#slider-range-min" ).slider({
+                range: "min",
+                value: 1,
+                min: 1,
+                max: 72,
+                slide: function( event, ui ) {
+                    $( "#amount" ).val( ui.value );
+                }
+            });
+        $( "#amount" ).val( $( "#slider-range-min" ).slider( "value" ) );
+    });
     </script>
   </head>
   <body>
@@ -33,7 +42,12 @@
 
   <div id="title">Nor'easter Tweets</div>
 
-  <div id="slider" style="top:85%; width:45%; margin-left:auto; margin-right:auto;"></div>
+  <p style="position:relative; vertical-align:middle; top:77.5%; height:20%; width:50%; margin-left:auto; margin-right:auto;">
+      <label for="amount" class="label" style="position:relative;">Hour </label>
+      <input type="text" id="amount" class="label" style="position:relative; border:0; background-color:#000000; color:#ffffff;">
+  </p>
+
+    <div id="slider-range-min" style="width:45%; top:60%; margin-left:auto; margin-right: auto;"></div>
 
   <span id="create">
     <p>
