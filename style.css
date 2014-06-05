@@ -13,7 +13,6 @@ body {
 }
 
 #info {
-
   font-size: 11px;
   position: absolute;
   bottom: 5px;
@@ -50,23 +49,25 @@ a:hover {
 }
 
 #title {
+  font-family:'Varela Round',sans-serif;
+  font-size:25px;
   position: absolute;
   top: 20px;
   width: 270px;
   left: 20px;
   background-color: rgba(0,0,0,0.2);
   border-radius: 3px;
-  font: 20px Georgia;
   padding: 10px;
 }
 
 #subtitle {
+  font-family:'Varela Round', sans-serif;
+  font-size: 15px;
   position:absolute;
   top:65px;
   width:270px;
   left:20px;
   background-color: rgba(0,0,0,0.2);
-  font:15px Georgia;
   color: rgba(255, 255, 255, 0.7);
   padding:10px;
 }
@@ -85,21 +86,21 @@ a:hover {
 }
 
 #link {
-  width:100px;
+  font-family:'Varela Round',sans-serif;
+  font-size:10px;
   height:10px;
   display:block;
   position:absolute;
-  font:10px Georgia;
   top:10px;
-  right:15px;
+  right:5px;
 }
 
 #create {
-  width: 120px;
+  font-family:'Varela Round',sans-serif;
+  font-size:15px;
   height:60px;
   display:block;
   position:absolute;
-  bottom:55px;
-  right:15px;
-  font:15px Georgia;
+  bottom:0px;
+  right:5px;
 }
