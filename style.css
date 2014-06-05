@@ -104,3 +104,8 @@ a:hover {
   bottom:0px;
   right:5px;
 }
+
+.label {
+    font-family:'Varela Round',sans-serif;
+    font-size:20px;
+}
