@@ -91,24 +91,15 @@ public class Exporter {
     }
 
     public static Data[][] exportRawTweetsOverTime(Data[] data, int hoursStep) {
-        data = Sorter.sortByTime(data);
-
-        Date current = (Date) data[0].time.clone();
-
-        int millistep = hoursStep * 3600000;
-
-        int pos = -1;
-
-        long duration = data[data.length - 1].time.getTime()-data[0].time.getTime();
-        Data[][] results = new Data[(int)(duration/milliStep)+1][1];
-
-        for(Data item : data) {
-            if(!item.time.before(current)) {
-                current.setTime(current.getTime() + milliStep);
-                pos++;
-            }
-
+        int[] split = exportTweetsOverTime(data, hoursStep);
+        Data[][] set = new Data[split.length][1];
+        int total = 0;
+        for(int i = 0; i < split.length; i++) {
+            System.arraycopy(data, total, set[i], 0, split[i]);
+            total += split[i];
         }
+
+        return split;
     }
 
     public static Packet[] exportToPackets(Data[] data) {
