@@ -13,18 +13,17 @@
     <script src="js/jquery-ui.custom.min.js"></script>
 
     <script>
-        $(function() {
+        $(function(globe) {
             $( "#slider-range-min" ).slider({
-                range: "min",
                 value: 1,
                 min: 1,
-                max: 72,
+                max: 120,
                 slide: function( event, ui ) {
                     $( "#amount" ).val( ui.value );
                 }
             });
-        $( "#amount" ).val( $( "#slider-range-min" ).slider( "value" ) );
-    });
+            $( "#amount" ).val( $( "#slider-range-min" ).slider( "value" ) );
+        });
     </script>
   </head>
   <body>
@@ -55,7 +54,7 @@
             <font color="#ffffff">
                 <b>
                     &lt&gt with
-                    <img src="resources/GITHUB_HEART.png" style="zoom:45%"/>
+                    <img src="resources/GITHUB_HEART.png" style="zoom:60%"/>
                     by Tarik Onalan
                 </b>
             </font>
@@ -92,7 +91,7 @@
 
 
       xhr = new XMLHttpRequest();
-      xhr.open('GET', 'data.json', true);
+      xhr.open('GET', 'resources/data.json', true);
       xhr.onreadystatechange = function(e) {
         if (xhr.readyState === 4) {
           if (xhr.status === 200) {
