@@ -118,9 +118,9 @@ public class Exporter {
         try {
             File jsonFile = new File("resources", "data.json");
             PrintWriter jsonWriter = new PrintWriter(new BufferedWriter(new FileWriter(jsonFile)));
-            jsonWriter.print("[[");
+            jsonWriter.print("[");
             for(int i = 0; i < data.length; i++) {
-                jsonWriter.print("\'Series" + i + "\', [");
+                jsonWriter.print("[\"Series" + i + "\",[");
                 for(int j = 0; j < data[i].length; j++) {
                     jsonWriter.print(data[i][j].locationCoords.latitude);
                     jsonWriter.print(",");
@@ -130,11 +130,11 @@ public class Exporter {
                     if((j+1) < data[i].length)
                         jsonWriter.print(",");
                 }
-                jsonWriter.print("]");
+                jsonWriter.print("]]");
                 if((i+1) < data.length)
                     jsonWriter.print(",");
             }
-            jsonWriter.print("]]");
+            jsonWriter.print("]");
             System.out.println("Finished.");
         } catch (IOException e) { System.err.println("IO Error: " + e); }
     }
