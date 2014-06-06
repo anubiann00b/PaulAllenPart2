@@ -20,10 +20,14 @@ public class Parser {
         reader = new BufferedReader(new FileReader(ref));
 
         reader.readLine(); // Header.
-        String line = null;
+        String line;
         for (int i=0;i<247256;i++) {
             line = reader.readLine();
-            data[i] = new Data(line);
+            try {
+                data[i] = new Data(line);
+            } catch(Exception ex) {
+                System.out.println(ex);
+            }
         }
         return clean(data);
     }

@@ -94,8 +94,11 @@ public class Exporter {
         int[] split = exportTweetsOverTime(data, hoursStep);
         Data[][] set = new Data[split.length][1];
         int total = 0;
+        Data[] temp;
         for(int i = 0; i < split.length; i++) {
-            System.arraycopy(data, total, set[i], 0, split[i]);
+            temp = new Data[split[i]];
+            System.arraycopy(data, total, temp, 0, split[i]);
+            set[i] = temp;
             total += split[i];
         }
 
@@ -112,27 +115,27 @@ public class Exporter {
     }
 
     public static void exportAsJson(Data[][] data) {
-        String tab = "    ";
-        String jsonString = "[\n" + tab + "[\n" + (tab+tab);
-        for(Data[] set : data) {
-            int i = 0;
-            jsonString += "\'Series\', [";
-            while(i < set.length) {
-                jsonString += set[i].locationCoords.latitude + ", ";
-                jsonString += set[i].locationCoords.longitude + ", ";
-                jsonString += 10;
-                if((i+1) < data.length)
-                    jsonString += ", ";
-                i++;
-            }
-        }
-        jsonString += "]\n" + tab + "]\n" + "]";
-        File jsonFile = new File("resources", "data.json");
         try {
+            File jsonFile = new File("resources", "data.json");
             PrintWriter jsonWriter = new PrintWriter(new BufferedWriter(new FileWriter(jsonFile)));
-            jsonWriter.print(jsonString);
-        } catch (IOException e) { System.err.println("Error: " + e); }
-
-        System.out.println(jsonString);
+            jsonWriter.print("[[");
+            for(int i = 0; i < data.length; i++) {
+                jsonWriter.print("\'Series" + i + "\', [");
+                for(int j = 0; j < data[i].length; j++) {
+                    jsonWriter.print(data[i][j].locationCoords.latitude);
+                    jsonWriter.print(",");
+                    jsonWriter.print(data[i][j].locationCoords.longitude);
+                    jsonWriter.print(",");
+                    jsonWriter.print(10);
+                    if((j+1) < data[i].length)
+                        jsonWriter.print(",");
+                }
+                jsonWriter.print("]");
+                if((i+1) < data.length)
+                    jsonWriter.print(",");
+            }
+            jsonWriter.print("]]");
+            System.out.println("Finished.");
+        } catch (IOException e) { System.err.println("IO Error: " + e); }
     }
 }
