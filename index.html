@@ -6,25 +6,7 @@
     <meta charset="utf-8"/>
 
     <link rel="stylesheet" href="style.css"/>
-    <link rel="stylesheet" href="jquery.css"/>
     <link href='https://fonts.googleapis.com/css?family=Varela+Round' rel='stylesheet'>
-
-    <script src="js/jquery.min.js"></script>
-    <script src="js/jquery-ui.custom.min.js"></script>
-
-    <script>
-        $(function(globe) {
-            $( "#slider-range-min" ).slider({
-                value: 1,
-                min: 1,
-                max: 120,
-                slide: function( event, ui ) {
-                    $( "#amount" ).val( ui.value );
-                }
-            });
-            $( "#amount" ).val( $( "#slider-range-min" ).slider( "value" ) );
-        });
-    </script>
   </head>
   <body>
 
@@ -40,7 +22,16 @@
   </span>
 
   <div id="currentInfo">
-    <span id="data" class="globe"></span>
+    <span id="data1" class="data">|</span>
+    <span id="data2" class="data">|</span>
+    <span id="data3" class="data">|</span>
+    <span id="data4" class="data">|</span>
+    <span id="data5" class="data">|</span>
+    <span id="data6" class="data">|</span>
+    <span id="data7" class="data">|</span>
+    <span id="data8" class="data">|</span>
+    <span id="data9" class="data">|</span>
+    <span id="data10" class="data">|</span>
   </div>
 
   <div id="title">Nor'easter Tweets</div>
@@ -76,6 +67,7 @@
       Detector.addGetWebGLMessage();
     } else {
 
+      var vars = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
       var container = document.getElementById('container');
       var globe = new DAT.Globe(container);
 
@@ -84,12 +76,24 @@
 
       var settime = function(globe, t) {
         return function() {
-          new TWEEN.Tween(globe).to({time: t},500).easing(TWEEN.Easing.Cubic.EaseOut).start();
+          new TWEEN.Tween(globe).to({time: t/vars.length},500).easing(TWEEN.Easing.Cubic.EaseOut).start();
+          var y = document.getElementById('data'+vars[t]);
+          if (y.getAttribute('class') === 'data active') {
+            return;
+          }
+          var yy = document.getElementsByClassName('data');
+          for(i=0; i<yy.length; i++) {
+            yy[i].setAttribute('class','data');
+          }
+          y.setAttribute('class', 'data active');
         };
       };
 
-      var y = document.getElementById('data');
-      y.addEventListener('mouseover', settime(globe,i), false);
+      for(int i = 0; i < vars.length; i++)
+          var y = document.getElementById('data' + vars[i]);
+          y.addEventListener('mouseover', settime(globe,i), false);
+      }
+
       var xhr;
       TWEEN.start();
 
