@@ -138,4 +138,11 @@ public class Exporter {
             System.out.println("Finished.");
         } catch (IOException e) { System.err.println("IO Error: " + e); }
     }
+    
+    public static Data[][] normalize(Data[][] data, int size) {
+        Data[][] normal = new Data[data.length][size];
+        for(int i = 0; i < data.length; i++)
+            System.arraycopy(data[i], 0, normal[i], 0, size);
+        return normal;
+    }
 }
