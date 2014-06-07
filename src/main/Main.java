@@ -11,7 +11,7 @@ public class Main {
 
     public static void main(String[] args) throws FileNotFoundException, ParseException, IOException {
         Data[] data = Parser.parse("resources/filter_geotweets.csv");
-        Data[][] timeData = Exporter.exportRawTweetsOverTime(data, 1);
+        Data[][] timeData = Exporter.exportRawTweetsOverTime(data, 12);
         Exporter.exportAsJson(timeData);
     }
 }

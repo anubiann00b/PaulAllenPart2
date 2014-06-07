@@ -120,7 +120,7 @@ public class Exporter {
             PrintWriter jsonWriter = new PrintWriter(new BufferedWriter(new FileWriter(jsonFile)));
             jsonWriter.print("[");
             for(int i = 0; i < data.length; i++) {
-                jsonWriter.print("[\"Series" + i + "\",[");
+                jsonWriter.print("[\"" + (i + 1) + "\",[");
                 for(int j = 0; j < data[i].length; j++) {
                     jsonWriter.print(data[i][j].locationCoords.latitude);
                     jsonWriter.print(",");
