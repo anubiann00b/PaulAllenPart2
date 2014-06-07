@@ -48,17 +48,17 @@
 
   <div id="container"></div>
 
-  <script type="text/javascript" src="third-party/Detector.js"/>
-  <script type="text/javascript" src="third-party/three.min.js"/>
-  <script type="text/javascript" src="third-party/Tween.js"/>
-  <script type="text/javascript" src="globe.js"/>
+  <script type="text/javascript" src="third-party/Detector.js"></script>
+  <script type="text/javascript" src="third-party/three.min.js"></script>
+  <script type="text/javascript" src="third-party/Tween.js"></script>
+  <script type="text/javascript" src="globe.js"></script>
   <script type="text/javascript">
 
     if(!Detector.webgl){
       Detector.addGetWebGLMessage();
     } else {
 
-      var vars = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+      var vars = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'];
       var container = document.getElementById('container');
       var globe = new DAT.Globe(container);
 
@@ -80,7 +80,7 @@
         };
       };
 
-      for(var i = 0; i < vars.length; i++)
+      for(var i = 0; i < vars.length; i++) {
           var y = document.getElementById('data' + vars[i]);
           y.addEventListener('mouseover', settime(globe,i), false);
       }
@@ -101,14 +101,13 @@
             }
             globe.createPoints();
             settime(globe,0)();
-            globe.animate();
             document.body.style.backgroundImage = 'none'; // remove loading
           }
         }
       };
+      globe.animate();
       xhr.send(null);
     }
-
   </script>
 
   </body>
