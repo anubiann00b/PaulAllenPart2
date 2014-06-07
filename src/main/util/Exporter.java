@@ -141,10 +141,21 @@ public class Exporter {
         } catch (IOException e) { System.err.println("IO Error: " + e); }
     }
     
-    public static Data[][] normalize(Data[][] data, int size) {
-        Data[][] normal = new Data[data.length][size];
+    public static Data[][] normalize(Data[][] data, float scale) {
+        Data[][] normal = new Data[][] {
+            new Data[(int)(data[0].length * scale)],
+            new Data[(int)(data[1].length * scale)],
+            new Data[(int)(data[2].length * scale)],
+            new Data[(int)(data[3].length * scale)],
+            new Data[(int)(data[4].length * scale)],
+            new Data[(int)(data[5].length * scale)],
+            new Data[(int)(data[6].length * scale)],
+            new Data[(int)(data[7].length * scale)],
+            new Data[(int)(data[8].length * scale)],
+            new Data[(int)(data[9].length * scale)]
+        };
         for(int i = 0; i < data.length; i++)
-            System.arraycopy(data[i], 0, normal[i], 0, size);
+            System.arraycopy(data[i], 0, normal[i], 0, normal[i].length);
         return normal;
     }
 }

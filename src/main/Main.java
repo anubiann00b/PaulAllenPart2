@@ -12,7 +12,7 @@ public class Main {
     public static void main(String[] args) throws FileNotFoundException, ParseException, IOException {
         Data[] data = Parser.parse("resources/filter_geotweets.csv");
         Data[][] timeData = Exporter.exportRawTweetsOverTime(data, 12);
-        Data[][] normalTime = Exporter.normalize(timeData, 5000);
+        Data[][] normalTime = Exporter.normalize(timeData, 0.25f);
         Exporter.exportAsJson(normalTime);
     }
 }
