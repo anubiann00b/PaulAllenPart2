@@ -14,14 +14,18 @@ public class Parser {
 
     /** Reads data from a text file. */
     public static Data[] parse(String ref) throws FileNotFoundException, ParseException, IOException {
+        return parse(ref, 247256);
+    }
+    
+    public static Data[] parse(String ref, int subset) throws FileNotFoundException, ParseException, IOException {
         BufferedReader reader;
-        Data[] data = new Data[247256];
+        Data[] data = new Data[subset];
 
         reader = new BufferedReader(new FileReader(ref));
 
         reader.readLine(); // Header.
         String line;
-        for (int i=0;i<247256;i++) {
+        for (int i=0;i<subset;i++) {
             line = reader.readLine();
             try {
                 data[i] = new Data(line);

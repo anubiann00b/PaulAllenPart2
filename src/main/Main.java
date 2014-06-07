@@ -10,7 +10,7 @@ import main.util.data.Data;
 public class Main {
 
     public static void main(String[] args) throws FileNotFoundException, ParseException, IOException {
-        Data[] data = Parser.parse("resources/filter_geotweets.csv");
+        Data[] data = Parser.parse("resources/filter_geotweets.csv", 25000);
         Data[][] timeData = Exporter.exportRawTweetsOverTime(data, 12);
         Exporter.exportAsJson(timeData);
     }
