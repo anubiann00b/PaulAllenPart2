@@ -29,9 +29,7 @@ public class Parser {
             line = reader.readLine();
             try {
                 data[i] = new Data(line);
-            } catch(Exception ex) {
-                System.out.println(ex);
-            }
+            } catch(Exception ex) {}
         }
         return clean(data);
     }

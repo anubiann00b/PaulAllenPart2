@@ -118,24 +118,26 @@ public class Exporter {
         try {
             File jsonFile = new File("resources", "data.json");
             PrintWriter jsonWriter = new PrintWriter(new BufferedWriter(new FileWriter(jsonFile)));
-            jsonWriter.print("[");
+            StringBuilder json = new StringBuilder();
+            json.append("[");
             for(int i = 0; i < data.length; i++) {
-                jsonWriter.print("[\"" + (i + 1) + "\",[");
+                json.append("[\"").append(i + 1).append("\",[");
                 for(int j = 0; j < data[i].length; j++) {
-                    jsonWriter.print(data[i][j].locationCoords.latitude);
-                    jsonWriter.print(",");
-                    jsonWriter.print(data[i][j].locationCoords.longitude);
-                    jsonWriter.print(",");
-                    jsonWriter.print(10);
+                    json.append(data[i][j].locationCoords.latitude);
+                    json.append(",");
+                    json.append(data[i][j].locationCoords.longitude);
+                    json.append(",");
+                    json.append(10);
                     if((j+1) < data[i].length)
-                        jsonWriter.print(",");
+                        json.append(",");
                 }
-                jsonWriter.print("]]");
+                json.append("]]");
                 if((i+1) < data.length)
-                    jsonWriter.print(",");
+                    json.append(",");
             }
-            jsonWriter.print("]");
-            System.out.println("Finished.");
+            json.append("]");
+            jsonWriter.print(json);
+            System.out.println(json);
         } catch (IOException e) { System.err.println("IO Error: " + e); }
     }
     
