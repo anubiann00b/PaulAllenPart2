@@ -15,10 +15,6 @@
       <a href="http://www.chromeexperiments.com/globe">
         WebGL
       </a>
-      and
-      <a href="http://www.jquery.com">
-          JQuery
-      </a>
   </span>
 
   <div id="currentInfo">
@@ -36,13 +32,6 @@
 
   <div id="title">Nor'easter Tweets</div>
 
-    <p style="position:relative; top:85%; height:20%; width:25%; left:47.5%;">
-        <label for="amount" class="label">Hour </label>
-        <input type="text" id="amount" class="label" style="border:0; background-color:#000000; color:#ffffff;">
-    </p>
-
-    <div id="slider-range-min" style="width:45%; top:60%; margin-left:auto; margin-right: auto;"></div>
-
   <span id="create">
     <p>
         <a href="https://github.com/QuantumPhi" style="text-decoration:none">
@@ -56,6 +45,8 @@
         </a>
     </p>
   </span>
+
+  <div id="container"></div>
 
   <script type="text/javascript" src="third-party/Detector.js"/>
   <script type="text/javascript" src="third-party/three.min.js"/>
@@ -89,7 +80,7 @@
         };
       };
 
-      for(int i = 0; i < vars.length; i++)
+      for(var i = 0; i < vars.length; i++)
           var y = document.getElementById('data' + vars[i]);
           y.addEventListener('mouseover', settime(globe,i), false);
       }
