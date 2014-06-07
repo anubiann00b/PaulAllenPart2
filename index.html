@@ -101,11 +101,11 @@
             }
             globe.createPoints();
             settime(globe,0)();
-            globe.animate();
             document.body.style.backgroundImage = 'none'; // remove loading
           }
         }
       };
+      globe.animate();
       xhr.send(null);
     }
   </script>
